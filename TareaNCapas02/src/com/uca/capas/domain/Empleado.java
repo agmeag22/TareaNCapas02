@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,8 +32,9 @@ public class Empleado {
 	@Column(name = "employee_gender")
 	private String employee_gender;
 	
-	@OneToMany(mappedBy = "table_store", fetch = FetchType.LAZY)
-	private List<Sucursal> sucursales;
+	@ManyToOne( fetch = FetchType.LAZY)
+	private Sucursal sucursal;
+	
 
 	public Integer getId_employee() {
 		return id_employee;
@@ -66,13 +68,13 @@ public class Empleado {
 		this.employee_gender = employee_gender;
 	}
 
-	public List<Sucursal> getSucursales() {
+	/*public List<Sucursal> getSucursales() {
 		return sucursales;
 	}
 
 	public void setSucursales(List<Sucursal> sucursales) {
 		this.sucursales = sucursales;
 	}
-	
+	*/
 	
 }
