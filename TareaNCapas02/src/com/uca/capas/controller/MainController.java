@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.capas.domain.User;
 import com.uca.capas.repositories.EmpleadoRepository;
 import com.uca.capas.repositories.SucursalRepository;
 import com.uca.capas.repositories.UserRepository;
@@ -48,7 +49,7 @@ public class MainController {
 	
 	@RequestMapping("/")
 	public ModelAndView initMain() {
-		log.info("Entrando a funcion init-min" + log.getName());
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login");
 		return mav;
@@ -57,16 +58,16 @@ public class MainController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value="username") String username,@RequestParam(value="password") String password) {
 		ModelAndView mav = new ModelAndView();
-		boolean result=userServ.findEqual(username, password);
-		try{
-		if(result) {
-		mav.setViewName("main");
+		if(userServ.findOneUser(username, password)) {
+			log.info("Entrando a funcion init-min" + log.getName());
+			mav.setViewName("main");
 		}else {
 			mav.setViewName("login");
 		}
-		}catch (Exception e) {
+			log.info("Esta mierda no funciona" + log.getName() +"u:::::::"+ username+ "p::::::"+password);
 			
-		}
+			
+		
 		return mav; 
 	}
 }

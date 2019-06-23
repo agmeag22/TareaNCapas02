@@ -30,7 +30,7 @@
     <form action="${pageContext.request.contextPath}/login" method = "post">
     <div class="form-group col-md-12 container">
 		<input type="text" id="login" class="form-control" name="username" placeholder="Username">
-		<input type="text" id="password" class="form-control" name="password" placeholder="Password">
+		<input type="text" id="password" class="form-control" name="password" placeholder="Password"z>
 		<input type="submit" class="btn btn-outline-dark" value="Sign In">
     </div>
     </form>
