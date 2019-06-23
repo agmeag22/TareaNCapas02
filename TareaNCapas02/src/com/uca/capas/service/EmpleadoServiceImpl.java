@@ -2,7 +2,12 @@ package com.uca.capas.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -53,6 +58,15 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return empleadoRepository.findAll(page).getContent();
 	}
 	
+	@PersistenceContext(unitName="capas")
+	private EntityManager entityManager;
 	
+	public List<Empleado> findBySucursal(int code) throws DataAccessException {
+			StringBuffer sb = new StringBuffer();
+			sb.append("select * from public.table_employee where id_store='"+code+"';");
+			Query query = entityManager.createNativeQuery(sb.toString());
+			List <Empleado> resultset=query.getResultList();
+			return resultset;
+	}
 
 }

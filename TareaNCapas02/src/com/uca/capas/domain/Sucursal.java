@@ -29,14 +29,18 @@ public class Sucursal {
 	@Column(name = "store_location")
 	private String store_location;
 	
-	@Column(name = "store_schedule")
-	private String store_schedule;
-	
 	@Column(name = "store_tables")
 	private String store_tables;
 	
 	@Column(name = "store_manager")
 	private String store_manager;
+	
+	@Column(name = "store_schedule_open")
+	private String store_schedule_open;
+	
+	@Column(name = "store_schedule_close")
+	private String store_schedule_close;
+	
 	
 	@OneToMany(mappedBy = "sucursal", fetch = FetchType.LAZY)
 	List<Empleado> empleados;
@@ -68,14 +72,6 @@ public class Sucursal {
 		this.store_location = store_location;
 	}
 
-	public String getStore_schedule() {
-		return store_schedule;
-	}
-
-	public void setStore_schedule(String store_schedule) {
-		this.store_schedule = store_schedule;
-	}
-
 	public String getStore_tables() {
 		return store_tables;
 	}
@@ -90,6 +86,22 @@ public class Sucursal {
 
 	public void setStore_manager(String store_manager) {
 		this.store_manager = store_manager;
+	}
+
+	public String getStore_schedule_open() {
+		return store_schedule_open;
+	}
+
+	public void setStore_schedule_open(String store_schedule_open) {
+		this.store_schedule_open = store_schedule_open;
+	}
+
+	public String getStore_schedule_close() {
+		return store_schedule_close;
+	}
+
+	public void setStore_schedule_close(String store_schedule_close) {
+		this.store_schedule_close = store_schedule_close;
 	}
 
 	public List<Empleado> getEmpleados() {
@@ -108,15 +120,17 @@ public class Sucursal {
 		this.usuarios = usuarios;
 	}
 
-	public Sucursal(Integer id_store, String store_name, String store_location, String store_schedule,
-			String store_tables, String store_manager, List<Empleado> empleados, List<User> usuarios) {
+	public Sucursal(Integer id_store, String store_name, String store_location, String store_tables,
+			String store_manager, String store_schedule_open, String store_schedule_close, List<Empleado> empleados,
+			List<User> usuarios) {
 		super();
 		this.id_store = id_store;
 		this.store_name = store_name;
 		this.store_location = store_location;
-		this.store_schedule = store_schedule;
 		this.store_tables = store_tables;
 		this.store_manager = store_manager;
+		this.store_schedule_open = store_schedule_open;
+		this.store_schedule_close = store_schedule_close;
 		this.empleados = empleados;
 		this.usuarios = usuarios;
 	}
@@ -125,6 +139,8 @@ public class Sucursal {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 	
 	

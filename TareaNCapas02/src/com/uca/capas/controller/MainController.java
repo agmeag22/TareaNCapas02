@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.capas.domain.Empleado;
 import com.uca.capas.domain.User;
+import com.uca.capas.domain.Sucursal;
 import com.uca.capas.repositories.EmpleadoRepository;
 import com.uca.capas.repositories.SucursalRepository;
 import com.uca.capas.repositories.UserRepository;
@@ -64,10 +66,42 @@ public class MainController {
 		}else {
 			mav.setViewName("login");
 		}
-			log.info("Esta mierda no funciona" + log.getName() +"u:::::::"+ username+ "p::::::"+password);
-			
-			
-		
+			log.info("No se pudo realizar" + log.getName() +"u:::::::"+ username+ "p::::::"+password);
 		return mav; 
 	}
+	
+	@RequestMapping(value="/mostrar")
+	public ModelAndView mostrar(@ModelAttribute Sucursal sucursal) {
+		ModelAndView mav = new ModelAndView();
+		List<Sucursal> sucursales = null;
+		try {
+			sucursales = sucursalServ.findAll();
+		}catch(Exception e){
+			log.info("Error:"+e.toString());
+		}
+		mav.addObject("store",sucursales);
+		mav.setViewName("listasucursales");
+		return mav;
+	}
+	
+	@RequestMapping(value="/verperfil")
+	public ModelAndView perfil(@RequestParam(value="code") Integer code) {
+		ModelAndView mav = new ModelAndView();
+		Sucursal sucursal = null;
+		List<Empleado> empleados=null;
+		List <User> usuarios=null;
+		try {
+			sucursal = sucursalServ.findOne(code);
+			empleados=empleadoServ.findBySucursal(code);
+			usuarios=userServ.findBySucursal(code);
+		}catch(Exception e){
+			log.info("Error:"+e.toString());
+		}
+		mav.addObject("store",sucursal);
+		mav.addObject("user",usuarios);
+		mav.addObject("empleado",empleados);
+		mav.setViewName("verperfil");
+		return mav;
+	}
+	
 }

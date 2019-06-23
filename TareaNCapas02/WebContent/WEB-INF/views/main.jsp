@@ -6,45 +6,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SpringJPA</title>
+<link href="./resources/css/bootstrap.css" media="all" type="text/css" rel="stylesheet">
+<style type="text/css">
+	.wraper{
+		display:flex;
+		align-content: center;
+		justify-content: center;
+	}
+	.button{
+		margin:20px;
+	}
+
+</style>
+<title>Restaurante Rustico</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/search" method = "post">
-	<label>Busqueda por codigo: </label><input type="number" placeholder="Ingrese codigo" name="code">
-	<input type="submit" value="Enviar">
-	</form>
-	
-	<form action="${pageContext.request.contextPath}/save" method = "post">
-	<input type="submit" value="Agregar un nuevo usuario">
-	</form>
-	
-	<form action="${pageContext.request.contextPath}/searchBy" method="post">
-	<input type="text" name="name" placeholder="Ingrese el nombre: ">
-	<input type="number" name="age" placeholder="Ingrese la edad: ">
-	<button type="submit">Buscar</button>
-	</form>
+	<div class="wraper">
 
-	<!--  <table>
-		<tr>
-			<th>Name</th>
-			<th>Last Name</th>
-			<th>Age</th>
-			<th>Status</th>
-		</tr>
-			<c:forEach items="${stores}" var="students">
-				<tr>
-					<td>${store.sName}</td>
-					<td>${store.lName}</td>
-					<td>${store.sAge}</td>
-					<td>${store.activoDelegate}</td>
-					<td>
-					<form action="${pageContext.request.contextPath}/update" method="post">
-						<input type="hidden" value="${students.cStudent}" name="code">
-						<input type="submit">
-					</form>
-					</td>
-				</tr>	
-			</c:forEach>
-	</table>-->
+	<form action="${pageContext.request.contextPath}/mostrar" method = "post">
+	<input type="submit" class="btn btn-outline-dark button" value="Mostrar Sucursales">
+	</form>
+	
+	<form action="${pageContext.request.contextPath}/registrar" method = "post">
+	<input type="submit" class="btn btn-outline-dark button" value="Registrar Sucursal">
+	</form>
+	
+	</div>
+	
 </body>
 </html>
