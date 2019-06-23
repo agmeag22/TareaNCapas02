@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
 	
 	public List<User> findBySucursal(int code) throws DataAccessException {
 			StringBuffer sb = new StringBuffer();
-			sb.append("select * from public.table_user where id_store='"+code+"';");
-			Query query = entityManager.createNativeQuery(sb.toString());
+			sb.append("select * from table_user where id_store="+code+";");
+			Query query = entityManager.createNativeQuery(sb.toString(),User.class);
 			List <User> resultset=query.getResultList();
 			return resultset;
 	}

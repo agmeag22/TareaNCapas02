@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.uca.capas.domain.Empleado;
 import com.uca.capas.repositories.EmpleadoRepository;
 
@@ -63,8 +64,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	
 	public List<Empleado> findBySucursal(int code) throws DataAccessException {
 			StringBuffer sb = new StringBuffer();
-			sb.append("select * from public.table_employee where id_store='"+code+"';");
-			Query query = entityManager.createNativeQuery(sb.toString());
+			sb.append("select * from table_employe e where e.id_store="+code+";");
+			Query query = entityManager.createNativeQuery(sb.toString(),Empleado.class);
 			List <Empleado> resultset=query.getResultList();
 			return resultset;
 	}

@@ -42,12 +42,12 @@ public class Sucursal {
 	private String store_schedule_close;
 	
 	
-	@OneToMany(mappedBy = "sucursal", fetch = FetchType.LAZY)
+	/*@OneToMany(mappedBy = "sucursal", fetch = FetchType.LAZY)
 	List<Empleado> empleados;
 
 	@OneToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
 	List<User> usuarios;
-
+*/
 	public Integer getId_store() {
 		return id_store;
 	}
@@ -104,7 +104,7 @@ public class Sucursal {
 		this.store_schedule_close = store_schedule_close;
 	}
 
-	public List<Empleado> getEmpleados() {
+	/*public List<Empleado> getEmpleados() {
 		return empleados;
 	}
 
@@ -118,11 +118,12 @@ public class Sucursal {
 
 	public void setUsuarios(List<User> usuarios) {
 		this.usuarios = usuarios;
-	}
+	}*/
 
 	public Sucursal(Integer id_store, String store_name, String store_location, String store_tables,
-			String store_manager, String store_schedule_open, String store_schedule_close, List<Empleado> empleados,
-			List<User> usuarios) {
+			String store_manager, String store_schedule_open, String store_schedule_close) {
+		//, List<Empleado> empleados,
+		//List<User> usuarios
 		super();
 		this.id_store = id_store;
 		this.store_name = store_name;
@@ -131,8 +132,8 @@ public class Sucursal {
 		this.store_manager = store_manager;
 		this.store_schedule_open = store_schedule_open;
 		this.store_schedule_close = store_schedule_close;
-		this.empleados = empleados;
-		this.usuarios = usuarios;
+		//this.empleados = empleados;
+		//this.usuarios = usuarios;
 	}
 
 	public Sucursal() {

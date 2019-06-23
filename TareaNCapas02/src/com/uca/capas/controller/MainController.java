@@ -85,21 +85,24 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/verperfil")
-	public ModelAndView perfil(@RequestParam(value="code") Integer code) {
+	public ModelAndView perfil(@RequestParam(value="code") int code) {
 		ModelAndView mav = new ModelAndView();
 		Sucursal sucursal = null;
 		List<Empleado> empleados=null;
 		List <User> usuarios=null;
+		
 		try {
 			sucursal = sucursalServ.findOne(code);
 			empleados=empleadoServ.findBySucursal(code);
 			usuarios=userServ.findBySucursal(code);
+			
+			
 		}catch(Exception e){
 			log.info("Error:"+e.toString());
 		}
 		mav.addObject("store",sucursal);
-		mav.addObject("user",usuarios);
-		mav.addObject("empleado",empleados);
+		mav.addObject("usuario",usuarios);
+		mav.addObject("empleados",empleados);
 		mav.setViewName("verperfil");
 		return mav;
 	}

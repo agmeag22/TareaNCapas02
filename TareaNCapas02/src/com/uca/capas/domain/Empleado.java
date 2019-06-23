@@ -14,107 +14,106 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "public", name = "table_employee")
+@Table(schema = "public", name = "table_employe")
 public class Empleado {
 
 	@Id
 	@GeneratedValue(generator="table_employee_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "table_employee_seq", sequenceName = "table_employee.table_employee_seq")
-	@Column(name = "id_employee")
-	private Integer id_employee;
+	@SequenceGenerator(name = "table_employee_seq", sequenceName = "table_employe.table_employee_seq")
+	@Column(name = "id_empleado")
+	private Integer id_empleado;
 	
-	@Column(name = "employee_name")
-	private String employee_name;
+	@Column(name = "e_name")
+	private String e_name;
 	
-	@Column(name = "employee_age")
-	private String employee_age;
+	@Column(name = "e_age")
+	private String e_age;
 	
-	@Column(name = "employee_gender")
-	private String employee_gender;
+	@Column(name = "e_gender")
+	private String e_gender;
 	
 	@Column(name="id_store")
-	private Integer id_store;
+	private int id_store;
 	
 	@Column(name="active_state")
-	private Integer active_state;
+	private int active_state;
 	
-	@ManyToOne( fetch = FetchType.LAZY)
-	private Sucursal sucursal;
+	/*@ManyToOne( fetch = FetchType.LAZY)
+	private Sucursal sucursal;*/
 
-	public Integer getId_employee() {
-		return id_employee;
+	public Integer getId_empleado() {
+		return id_empleado;
 	}
 
-	public void setId_employee(Integer id_employee) {
-		this.id_employee = id_employee;
+	public void setId_empleado(Integer id_empleado) {
+		this.id_empleado = id_empleado;
 	}
 
-	public String getEmployee_name() {
-		return employee_name;
+	public String getE_name() {
+		return e_name;
 	}
 
-	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
 	}
 
-	public String getEmployee_age() {
-		return employee_age;
+	public String getE_age() {
+		return e_age;
 	}
 
-	public void setEmployee_age(String employee_age) {
-		this.employee_age = employee_age;
+	public void setE_age(String e_age) {
+		this.e_age = e_age;
 	}
 
-	public String getEmployee_gender() {
-		return employee_gender;
+	public String getE_gender() {
+		return e_gender;
 	}
 
-	public void setEmployee_gender(String employee_gender) {
-		this.employee_gender = employee_gender;
+	public void setE_gender(String e_gender) {
+		this.e_gender = e_gender;
 	}
 
-	public Integer getId_store() {
+	public int getId_store() {
 		return id_store;
 	}
 
-	public void setId_store(Integer id_store) {
+	public void setId_store(int id_store) {
 		this.id_store = id_store;
 	}
 
-	public Integer getActive_state() {
+	public int getActive_state() {
 		return active_state;
 	}
 
-	public void setActive_state(Integer active_state) {
+	public void setActive_state(int active_state) {
 		this.active_state = active_state;
 	}
 
-	public Sucursal getSucursal() {
+	/*public Sucursal getSucursal() {
 		return sucursal;
 	}
 
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
-	}
+	}*/
 
-	public Empleado(Integer id_employee, String employee_name, String employee_age, String employee_gender,
-			Integer id_store, Integer active_state, Sucursal sucursal) {
+	public Empleado(Integer id_empleado, String e_name, String e_age, String e_gender, int id_store, int active_state) {
+		//,Sucursal sucursal
 		super();
-		this.id_employee = id_employee;
-		this.employee_name = employee_name;
-		this.employee_age = employee_age;
-		this.employee_gender = employee_gender;
+		this.id_empleado = id_empleado;
+		this.e_name = e_name;
+		this.e_age = e_age;
+		this.e_gender = e_gender;
 		this.id_store = id_store;
 		this.active_state = active_state;
-		this.sucursal = sucursal;
+		//this.sucursal = sucursal;
 	}
 
 	public Empleado() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
+	
 		
 }

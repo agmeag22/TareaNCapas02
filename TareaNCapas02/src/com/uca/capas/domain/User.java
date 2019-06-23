@@ -32,11 +32,11 @@ public class User {
 	@Column(name = "pass")
 	private String password;
 	
-	@Column(name = "id_sucursal")
-	private String id_sucursal;
+	@Column(name = "id_store")
+	private String id_store;
 	
-	@ManyToOne( fetch = FetchType.LAZY)
-	private Sucursal usuarios;
+	/*@ManyToOne( fetch = FetchType.LAZY)
+	private Sucursal usuarios;*/
 
 	public Integer getIduser() {
 		return iduser;
@@ -62,29 +62,33 @@ public class User {
 		this.password = password;
 	}
 
-	public String getId_sucursal() {
-		return id_sucursal;
+	
+	
+	public String getId_store() {
+		return id_store;
 	}
 
-	public void setId_sucursal(String id_sucursal) {
-		this.id_sucursal = id_sucursal;
+	public void setId_store(String id_store) {
+		this.id_store = id_store;
 	}
 
-	public Sucursal getUsuarios() {
+	/*public Sucursal getUsuarios() {
 		return usuarios;
 	}
 
 	public void setUsuarios(Sucursal usuarios) {
 		this.usuarios = usuarios;
 	}
+*/
 
-	public User(Integer iduser, String username, String password, String id_sucursal, Sucursal usuarios) {
+	public User(Integer iduser, String username, String password, String id_store) {
+		//, Sucursal usuarios
 		super();
 		this.iduser = iduser;
 		this.username = username;
 		this.password = password;
-		this.id_sucursal = id_sucursal;
-		this.usuarios = usuarios;
+		this.id_store = id_store;
+		//this.usuarios = usuarios;
 	}
 
 	public User() {
