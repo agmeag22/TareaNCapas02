@@ -26,11 +26,17 @@
 	<form action="${pageContext.request.contextPath}/mostrar" method = "post">
 	<input type="submit" class="btn btn-outline-dark button" value="Mostrar Sucursales">
 	</form>
-	
-	<form action="${pageContext.request.contextPath}/registrar" method = "post">
-	<input type="submit" class="btn btn-outline-dark button" value="Registrar Sucursal">
-	</form>
-	
+	</div>
+	<div class="form-group col-md-4 container">
+		<form action="${pageContext.request.contextPath}/guardar" modelAttribute="sucursal" method="post">
+		<div>Nombre:</div><input type="text" class="form-control" name="store_name" placeholder="Nombre sucursal" required>
+		<div>Horario apertura:</div><input type="text" class="form-control" name="store_schedule_open" placeholder="Ejemplo: 12:00 PM" required>
+		<div>Horario cierre:</div><input type="text" class="form-control" name="store_schedule_close" placeholder="Ejemplo: 12:00 AM" required>
+		<div>Ubicación:</div><input type="text" class="form-control" name="store_location" required>
+		<div>Numero de mesas :</div><input type="number" class="form-control" name="store_tables" placeholder="Número" required>
+		<div>Nombre gerente :</div><input type="text" class="form-control" name="store_manager" placeholder="Nombre y Apellido" required>
+		<input type="submit" class="btn btn-outline-dark button" value="Registrar Sucursal">
+		</form>
 	</div>
 	
 </body>

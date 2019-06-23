@@ -106,5 +106,41 @@ public class MainController {
 		mav.setViewName("verperfil");
 		return mav;
 	}
+	@RequestMapping(value="/registrar")
+	public ModelAndView registrar() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("registrarsucursal");
+		return mav;
+	}
+	
+	@RequestMapping(value="/guardar")
+	public ModelAndView save(@ModelAttribute(name="sucursal") Sucursal sucursal) {
+		ModelAndView mav = new ModelAndView();
+		List<Sucursal> sucursales = null;
+		try {
+			sucursalServ.save(sucursal);
+			sucursales = sucursalServ.findAll();
+		}catch (Exception e){
+			log.info("Error:"+e.toString());	
+		}
+		mav.addObject("store",sucursales);
+		mav.setViewName("listasucursales");
+		return mav;
+	}
+	@RequestMapping(value="/eliminar")
+	public ModelAndView delete(@RequestParam(value="code") int code) {
+		ModelAndView mav = new ModelAndView();
+		List<Sucursal> sucursales = null;
+		try {
+			sucursalServ.delete(sucursalServ.findOne(code));
+			sucursales = sucursalServ.findAll();
+		}catch (Exception e){
+			log.info("Error:"+e.toString());	
+		}
+		mav.addObject("store",sucursales);
+		mav.setViewName("listasucursales");
+		return mav;
+	}
+	
 	
 }

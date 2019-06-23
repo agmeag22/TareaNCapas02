@@ -19,7 +19,7 @@ public class Empleado {
 
 	@Id
 	@GeneratedValue(generator="table_employee_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "table_employee_seq", sequenceName = "table_employe.table_employee_seq")
+	@SequenceGenerator(name = "table_employee_seq", sequenceName = "table_employe.table_employee_seq",allocationSize=1)
 	@Column(name = "id_empleado")
 	private Integer id_empleado;
 	

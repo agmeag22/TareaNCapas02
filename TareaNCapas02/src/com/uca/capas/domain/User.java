@@ -22,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User {
 	@Id
 	@GeneratedValue(generator="user_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "user_seq", sequenceName = "table_user.user_seq")
+	@SequenceGenerator(name = "user_seq", sequenceName = "table_user.user_seq",allocationSize=1)
 	@Column(name = "id_user")
 	private Integer iduser;
 	

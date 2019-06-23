@@ -19,7 +19,7 @@ public class Sucursal {
 
 	@Id
 	@GeneratedValue(generator="table_store_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "table_store_seq", sequenceName = "table_store.table_store_seq")
+	@SequenceGenerator(name = "table_store_seq", sequenceName = "public.table_store_seq",allocationSize=1)
 	@Column(name = "id_store")
 	private Integer id_store;
 	
@@ -30,7 +30,7 @@ public class Sucursal {
 	private String store_location;
 	
 	@Column(name = "store_tables")
-	private String store_tables;
+	private int store_tables;
 	
 	@Column(name = "store_manager")
 	private String store_manager;
@@ -72,11 +72,11 @@ public class Sucursal {
 		this.store_location = store_location;
 	}
 
-	public String getStore_tables() {
+	public int getStore_tables() {
 		return store_tables;
 	}
 
-	public void setStore_tables(String store_tables) {
+	public void setStore_tables(int store_tables) {
 		this.store_tables = store_tables;
 	}
 
@@ -120,7 +120,7 @@ public class Sucursal {
 		this.usuarios = usuarios;
 	}*/
 
-	public Sucursal(Integer id_store, String store_name, String store_location, String store_tables,
+	public Sucursal(Integer id_store, String store_name, String store_location, int store_tables,
 			String store_manager, String store_schedule_open, String store_schedule_close) {
 		//, List<Empleado> empleados,
 		//List<User> usuarios
