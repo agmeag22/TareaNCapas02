@@ -32,9 +32,14 @@ public class Empleado {
 	@Column(name = "employee_gender")
 	private String employee_gender;
 	
+	@Column(name="id_store")
+	private Integer id_store;
+	
+	@Column(name="active_state")
+	private Integer active_state;
+	
 	@ManyToOne( fetch = FetchType.LAZY)
 	private Sucursal sucursal;
-	
 
 	public Integer getId_employee() {
 		return id_employee;
@@ -68,13 +73,48 @@ public class Empleado {
 		this.employee_gender = employee_gender;
 	}
 
-	/*public List<Sucursal> getSucursales() {
-		return sucursales;
+	public Integer getId_store() {
+		return id_store;
 	}
 
-	public void setSucursales(List<Sucursal> sucursales) {
-		this.sucursales = sucursales;
+	public void setId_store(Integer id_store) {
+		this.id_store = id_store;
 	}
-	*/
+
+	public Integer getActive_state() {
+		return active_state;
+	}
+
+	public void setActive_state(Integer active_state) {
+		this.active_state = active_state;
+	}
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+
+	public Empleado(Integer id_employee, String employee_name, String employee_age, String employee_gender,
+			Integer id_store, Integer active_state, Sucursal sucursal) {
+		super();
+		this.id_employee = id_employee;
+		this.employee_name = employee_name;
+		this.employee_age = employee_age;
+		this.employee_gender = employee_gender;
+		this.id_store = id_store;
+		this.active_state = active_state;
+		this.sucursal = sucursal;
+	}
+
+	public Empleado() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
+	
+
+		
 }

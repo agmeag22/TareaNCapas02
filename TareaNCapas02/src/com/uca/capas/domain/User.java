@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,8 +29,14 @@ public class User {
 	@Column(name = "username")
 	private String username;
 	
-	@Column(name = "password")
+	@Column(name = "pass")
 	private String password;
+	
+	@Column(name = "id_sucursal")
+	private String id_sucursal;
+	
+	@ManyToOne( fetch = FetchType.LAZY)
+	private Sucursal usuarios;
 
 	public Integer getIduser() {
 		return iduser;
@@ -55,15 +62,35 @@ public class User {
 		this.password = password;
 	}
 
-	public User(Integer iduser, String username, String password) {
+	public String getId_sucursal() {
+		return id_sucursal;
+	}
+
+	public void setId_sucursal(String id_sucursal) {
+		this.id_sucursal = id_sucursal;
+	}
+
+	public Sucursal getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Sucursal usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public User(Integer iduser, String username, String password, String id_sucursal, Sucursal usuarios) {
 		super();
 		this.iduser = iduser;
 		this.username = username;
 		this.password = password;
+		this.id_sucursal = id_sucursal;
+		this.usuarios = usuarios;
 	}
-	
+
 	public User() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
+	
 	
 }

@@ -41,6 +41,9 @@ public class Sucursal {
 	@OneToMany(mappedBy = "sucursal", fetch = FetchType.LAZY)
 	List<Empleado> empleados;
 
+	@OneToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
+	List<User> usuarios;
+
 	public Integer getId_store() {
 		return id_store;
 	}
@@ -88,6 +91,42 @@ public class Sucursal {
 	public void setStore_manager(String store_manager) {
 		this.store_manager = store_manager;
 	}
+
+	public List<Empleado> getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(List<Empleado> empleados) {
+		this.empleados = empleados;
+	}
+
+	public List<User> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<User> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public Sucursal(Integer id_store, String store_name, String store_location, String store_schedule,
+			String store_tables, String store_manager, List<Empleado> empleados, List<User> usuarios) {
+		super();
+		this.id_store = id_store;
+		this.store_name = store_name;
+		this.store_location = store_location;
+		this.store_schedule = store_schedule;
+		this.store_tables = store_tables;
+		this.store_manager = store_manager;
+		this.empleados = empleados;
+		this.usuarios = usuarios;
+	}
+
+	public Sucursal() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 	
 }
