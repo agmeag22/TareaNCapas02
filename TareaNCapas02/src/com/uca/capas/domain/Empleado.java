@@ -27,7 +27,7 @@ public class Empleado {
 	private String e_name;
 	
 	@Column(name = "e_age")
-	private String e_age;
+	private Integer e_age;
 	
 	@Column(name = "e_gender")
 	private String e_gender;
@@ -57,11 +57,11 @@ public class Empleado {
 		this.e_name = e_name;
 	}
 
-	public String getE_age() {
+	public Integer getE_age() {
 		return e_age;
 	}
 
-	public void setE_age(String e_age) {
+	public void setE_age(Integer e_age) {
 		this.e_age = e_age;
 	}
 
@@ -97,7 +97,7 @@ public class Empleado {
 		this.sucursal = sucursal;
 	}*/
 
-	public Empleado(Integer id_empleado, String e_name, String e_age, String e_gender, int id_store, int active_state) {
+	public Empleado(Integer id_empleado, String e_name, Integer e_age, String e_gender, int id_store, int active_state) {
 		//,Sucursal sucursal
 		super();
 		this.id_empleado = id_empleado;

@@ -124,30 +124,55 @@
 	  
 	  </div>
       <div class="container3">
+      	<form action="${pageContext.request.contextPath}/nuevoempleado?id_store=${store.id_store} " method="post">
+      	<input type="hidden" value="${store.id_store}" name="id_store">
+		<input type="submit" class="btn btn-outline-primary btn-sm" value="Nuevo Usuario">
 	  	<h4>Tabla Empleados</h4>
 	  	<table class="table table-hover">
 		<thead class="thead-dark table-hover">
 		<tr>
-			<th>Número</th>
 			<th>Nombre</th>
 			<th>Edad</th>
 			<th>Género</th>
 			<th>Estado</th>
+			<th>Acción</th>
 			
 		</tr>
 			<c:forEach items="${empleados}" var="empleados">
 				<tr>
-					<td>${empleados.id_empleado}</td>
 					<td>${empleados.e_name}</td>
 					<td>${empleados.e_age}</td>
 					<td>${empleados.e_gender}</td>
 					<c:set var = "state" value = "${empleados.active_state}"/>
-					<c:if test = "${state>0}">
+					<c:if test = "${state<1}">
 					<td><button type="button" class="btn btn-danger btn-sm">Inactivo</button></td>
 					</c:if>
-					<c:if test = "${state<1}">
+					<c:if test = "${state>0}">
 					<td><button type="button" class="btn btn-success btn-sm">Activo</button></td>
 					</c:if>
+					<td>
+					<div class="wraper2">
+					</form>
+					<form action="${pageContext.request.contextPath}/editarempleado" method="post" ModelAttribute="empleado">
+						<input type="hidden" value="${empleados.id_empleado}" name="id_empleado">
+						<input type="hidden" value="${empleados.e_name}" name="e_name">
+						<input type="hidden" value="${empleados.e_age}" name="e_age">
+						<input type="hidden" value="${empleados.e_gender}" name="e_gender">
+						<input type="hidden" value="${empleados.id_store}" name="id_store">
+						<input type="hidden" value="${empleados.active_state}" name="active_state">
+						<input type="submit" class="btn btn-outline-success btn-sm" value="Editar">
+					</form>
+					<form action="${pageContext.request.contextPath}/eliminarempleado" method="post">
+						<input type="hidden" value="${empleados.id_empleado}" name="id_empleado">
+						<input type="hidden" value="${empleados.e_name}" name="e_name">
+						<input type="hidden" value="${empleados.e_age}" name="e_age">
+						<input type="hidden" value="${empleados.e_gender}" name="e_gender">
+						<input type="hidden" value="${empleados.id_store}" name="id_store">
+						<input type="hidden" value="${empleados.active_state}" name="active_state">
+						<input type="submit" class="btn btn-outline-danger btn-sm" value="Eliminar">
+					</form>
+					</div>
+</td>
 					
 					
 				</tr>	
