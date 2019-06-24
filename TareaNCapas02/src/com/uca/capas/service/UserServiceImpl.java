@@ -23,25 +23,15 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	@PersistenceContext(unitName="capas")
-	private EntityManager entityManager;
 	
 	public boolean findOneUser(String username, String password) throws DataAccessException {
-			StringBuffer sb = new StringBuffer();
 			boolean result=false;
-			sb.append("select count(*) from public.table_user where username='"+username+"' and pass='"+password+"';");
-			Query query = entityManager.createNativeQuery(sb.toString());
-			int resultset= ((Number) query.getSingleResult()).intValue();
-			if(resultset==1) result=true;
+			if(userRepository.findOneUser(username, password)==1) result=true;
 			return result;
 	}
 	
 	
 	public List<User> findBySucursal(int code) throws DataAccessException {
-			StringBuffer sb = new StringBuffer();
-			sb.append("select * from table_user where id_store="+code+";");
-			Query query = entityManager.createNativeQuery(sb.toString(),User.class);
-			List <User> resultset=query.getResultList();
-			return resultset;
+			return userRepository.findBySucursal(code);
 	}
 }

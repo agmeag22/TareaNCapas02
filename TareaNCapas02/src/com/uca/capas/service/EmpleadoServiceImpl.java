@@ -58,16 +58,13 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findAll(page).getContent();
 	}
-	
-	@PersistenceContext(unitName="capas")
-	private EntityManager entityManager;
-	
+
 	public List<Empleado> findBySucursal(int code) throws DataAccessException {
-			StringBuffer sb = new StringBuffer();
-			sb.append("select * from table_employe e where e.id_store="+code+";");
-			Query query = entityManager.createNativeQuery(sb.toString(),Empleado.class);
-			List <Empleado> resultset=query.getResultList();
-			return resultset;
+		return empleadoRepository.findBySucursal(code);
 	}
+	
+	
+			
+			
 
 }

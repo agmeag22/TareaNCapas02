@@ -109,6 +109,12 @@ public class MainController {
 	@RequestMapping(value="/registrar")
 	public ModelAndView registrar() {
 		ModelAndView mav = new ModelAndView();
+		List<Empleado> empleados=null;
+		try {
+			empleados=empleadoServ.findAll();
+		}catch(Exception e){
+		}
+		mav.addObject("empleados",empleados);
 		mav.setViewName("registrarsucursal");
 		return mav;
 	}
@@ -131,16 +137,63 @@ public class MainController {
 	public ModelAndView delete(@RequestParam(value="code") int code) {
 		ModelAndView mav = new ModelAndView();
 		List<Sucursal> sucursales = null;
+		String message="";
+		
 		try {
 			sucursalServ.delete(sucursalServ.findOne(code));
 			sucursales = sucursalServ.findAll();
+			message="Se ha borrado con exito";
 		}catch (Exception e){
 			log.info("Error:"+e.toString());	
 		}
 		mav.addObject("store",sucursales);
+		mav.addObject("message",message);
 		mav.setViewName("listasucursales");
 		return mav;
 	}
+	
+	@RequestMapping(value="/editar")
+	public ModelAndView edit(@RequestParam(value="code") int code) {
+		ModelAndView mav = new ModelAndView();
+		Sucursal sucursal = null;
+		List <Empleado> empleados=null;
+		try {
+			sucursal=sucursalServ.findOne(code);
+			empleados=empleadoServ.findBySucursal(code);
+		}catch (Exception e){
+			log.info("Error:"+e.toString());	
+		}
+		mav.addObject("empleados",empleados);
+		mav.addObject("store",sucursal);
+		mav.setViewName("editarperfil");
+		return mav;
+	}
+	
+	@RequestMapping(value="/actualizar")
+	public ModelAndView actualizar(@ModelAttribute(value="sucursal") Sucursal su) {
+		ModelAndView mav = new ModelAndView();
+		
+		List <Sucursal> sucursales=null;
+		String message="";
+		try {
+			
+			sucursalServ.updateSucursal(su.getId_store(),su.getStore_name(),
+					su.getStore_location(),su.getStore_schedule_open(),su.getStore_schedule_close(),
+					su.getStore_tables(),su.getStore_manager());
+					
+			//sucursalServ.save(su);
+			message="actualizacion con exito";
+			sucursales=sucursalServ.findAll();
+			
+		}catch (Exception e){
+			log.info("Error:"+e.toString());	
+		}
+		mav.addObject("store",sucursales);
+		mav.addObject("message",message);
+		mav.setViewName("listasucursales");
+		return mav;
+	}
+	
 	
 	
 }

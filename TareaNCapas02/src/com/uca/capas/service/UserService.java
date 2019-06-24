@@ -12,4 +12,5 @@ public interface UserService {
 
 	public boolean findOneUser(String username, String password) throws DataAccessException;
 	public List<User> findBySucursal(int code) throws DataAccessException;
+	
 }

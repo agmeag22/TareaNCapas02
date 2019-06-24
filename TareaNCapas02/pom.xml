@@ -79,6 +79,11 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>2.1.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jpaquery</groupId>
+			<artifactId>jpaquery</artifactId>
+			<version>0.19</version>
+		</dependency>
 
 	</dependencies>
 </project>

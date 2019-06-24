@@ -39,13 +39,15 @@
 <title>Registrar Sucursal</title>
 </head>
 <body>
+
 <div class="container">
 	<div class="wraper">
-		
 	<form action="${pageContext.request.contextPath}/registrar" method = "post">
 	<input type="submit" class="btn btn-outline-dark button" value="Registrar Sucursal">
 	</form>
-	
+	</div>
+	<div class="alert alert-success" role="alert">
+ 		${message}
 	</div>
 	<table class="table table-hover">
 		<thead class="thead-dark table-hover">
