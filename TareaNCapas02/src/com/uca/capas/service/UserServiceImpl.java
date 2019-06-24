@@ -1,6 +1,7 @@
 package com.uca.capas.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.capas.domain.Empleado;
+import com.uca.capas.domain.Sucursal;
 import com.uca.capas.domain.User;
 import com.uca.capas.repositories.UserRepository;
 
@@ -34,4 +36,34 @@ public class UserServiceImpl implements UserService {
 	public List<User> findBySucursal(int code) throws DataAccessException {
 			return userRepository.findBySucursal(code);
 	}
+
+
+	public User findOne(Integer sucursal) {
+		// TODO Auto-generated method stub
+		return userRepository.findById(sucursal).get();
+	}
+
+	
+	public void deleteUser(User user) {
+		userRepository.delete(user);
+		
+	}
+
+
+	@Override
+	public void delete(User user) {
+		userRepository.delete(user);
+		
+	}
+
+
+	@Override
+	public void save(User user) {
+		userRepository.save(user);
+		
+	}
+
+
+	
+	
 }

@@ -52,14 +52,12 @@
 	<table class="table table-hover">
 		<thead class="thead-dark table-hover">
 		<tr>
-			<th>Número</th>
 			<th>Sucursal</th>
 			<th>Ubicación</th>
 			<th>Acción</th>
 		</tr>
 			<c:forEach items="${store}" var="store">
 				<tr>
-					<td>${store.id_store}</td>
 					<td>${store.store_name}</td>
 					<td>${store.store_location}</td>
 					<td>

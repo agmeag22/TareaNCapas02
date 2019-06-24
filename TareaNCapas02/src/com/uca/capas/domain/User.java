@@ -22,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User {
 	@Id
 	@GeneratedValue(generator="user_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "user_seq", sequenceName = "table_user.user_seq",allocationSize=1)
+	@SequenceGenerator(name = "user_seq", sequenceName = "public.user_seq",allocationSize=1)
 	@Column(name = "id_user")
 	private Integer iduser;
 	
@@ -33,7 +33,7 @@ public class User {
 	private String password;
 	
 	@Column(name = "id_store")
-	private String id_store;
+	private int id_store;
 	
 	/*@ManyToOne( fetch = FetchType.LAZY)
 	private Sucursal usuarios;*/
@@ -64,11 +64,11 @@ public class User {
 
 	
 	
-	public String getId_store() {
+	public int getId_store() {
 		return id_store;
 	}
 
-	public void setId_store(String id_store) {
+	public void setId_store(int id_store) {
 		this.id_store = id_store;
 	}
 
@@ -81,7 +81,7 @@ public class User {
 	}
 */
 
-	public User(Integer iduser, String username, String password, String id_store) {
+	public User(Integer iduser, String username, String password, int id_store) {
 		//, Sucursal usuarios
 		super();
 		this.iduser = iduser;

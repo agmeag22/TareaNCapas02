@@ -30,6 +30,7 @@
 	</div>
 	<div class="form-group col-md-4 container">
 		<form action="${pageContext.request.contextPath}/actualizar" modelAttribute="sucursal" method="post">
+		<input type="hidden" class="form-control" name="id_store" value="${store.id_store}" required>
 		<div>Nombre:</div><input type="text" class="form-control" name="store_name" placeholder="Nombre sucursal" required value="${store.store_name}">
 		<div>Horario apertura:</div><input type="text" class="form-control" name="store_schedule_open" 
 		placeholder="Ejemplo: 12:00 PM" required value="${store.store_schedule_open}">

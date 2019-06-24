@@ -81,30 +81,39 @@
       </div>
      
       <div class="wraper">
+      
 	 <div class="container3">
+		<form action="${pageContext.request.contextPath}/nuevousuario" method="post">
+      	<input type="hidden" value="${store.id_store}" name="id_store">
+		<input type="submit" class="btn btn-outline-primary btn-sm" value="Nuevo Usuario">
+		</form>
 	  	<h4>Tabla Usuarios</h4>
 	  	<table class="table table-hover">
 		<thead class="thead-dark table-hover">
 		<tr>
-			<th>Número</th>
 			<th>Usuario</th>
 			<th>Contraseña</th>
 			<th>Acción</th>
 		</tr>
 			<c:forEach items="${usuario}" var="usuario">
 				<tr>
-					<td>${usuario.iduser}</td>
 					<td>${usuario.username}</td>
 					<td>${usuario.password}</td>
 					<td>
 					<div class="wraper2">
 					</form>
-					<form action="${pageContext.request.contextPath}/editar" method="post">
-						<input type="hidden" value="${usuario.iduser}" name="code">
+					<form action="${pageContext.request.contextPath}/editaruser" method="post" modelAttribute="user">
+						<input type="hidden" value="${usuario.iduser}" name="iduser">
+						<input type="hidden" value="${usuario.username}" name="username">
+						<input type="hidden" value="${usuario.password}" name="password">
+						<input type="hidden" value="${usuario.id_store}" name="id_store">
 						<input type="submit" class="btn btn-outline-success btn-sm" value="Editar">
 					</form>
-					<form action="${pageContext.request.contextPath}/eliminar" method="post">
-						<input type="hidden" value="${usuario.iduser}" name="code">
+					<form action="${pageContext.request.contextPath}/eliminaruser" method="post" modelAttribute="user">
+						<input type="hidden" value="${usuario.iduser}" name="iduser">
+						<input type="hidden" value="${usuario.username}" name="username">
+						<input type="hidden" value="${usuario.password}" name="password">
+						<input type="hidden" value="${usuario.id_store}" name="id_store">
 						<input type="submit" class="btn btn-outline-danger btn-sm" value="Eliminar">
 					</form>
 					</div>
@@ -124,7 +133,7 @@
 			<th>Edad</th>
 			<th>Género</th>
 			<th>Estado</th>
-			<th>Acción</th>
+			
 		</tr>
 			<c:forEach items="${empleados}" var="empleados">
 				<tr>
@@ -132,20 +141,15 @@
 					<td>${empleados.e_name}</td>
 					<td>${empleados.e_age}</td>
 					<td>${empleados.e_gender}</td>
-					<td>${empleados.active_state}</td>
-					<td>
-					<div class="wraper2">
-					</form>
-					<form action="${pageContext.request.contextPath}/editar" method="post">
-						<input type="hidden" value="${empleados.id_empleado}" name="code">
-						<input type="submit" class="btn btn-outline-success btn-sm" value="Editar">
-					</form>
-					<form action="${pageContext.request.contextPath}/eliminar" method="post">
-						<input type="hidden" value="${empleados.id_empleado}" name="code">
-						<input type="submit" class="btn btn-outline-danger btn-sm" value="Eliminar">
-					</form>
-					</div>
-					</td>
+					<c:set var = "state" value = "${empleados.active_state}"/>
+					<c:if test = "${state>0}">
+					<td><button type="button" class="btn btn-danger btn-sm">Inactivo</button></td>
+					</c:if>
+					<c:if test = "${state<1}">
+					<td><button type="button" class="btn btn-success btn-sm">Activo</button></td>
+					</c:if>
+					
+					
 				</tr>	
 			</c:forEach>
 	</table>

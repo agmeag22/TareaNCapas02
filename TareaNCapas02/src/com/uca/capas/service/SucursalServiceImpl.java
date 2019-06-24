@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uca.capas.domain.Empleado;
 import com.uca.capas.domain.Sucursal;
+import com.uca.capas.repositories.EmpleadoRepository;
 import com.uca.capas.repositories.SucursalRepository;
 
 @Service
@@ -24,6 +25,9 @@ public class SucursalServiceImpl implements SucursalService {
 	
 	@Autowired
 	SucursalRepository sucursalRepository;
+	
+	@Autowired
+	EmpleadoRepository empleadoRepository;
 
 	public List<Sucursal> findAll() {
 		// TODO Auto-generated method stub
@@ -46,11 +50,7 @@ public class SucursalServiceImpl implements SucursalService {
 		return sucursalRepository.count();
 	}
 
-	public List<Sucursal> findAll(Sort sort) {
-		// TODO Auto-generated method stub
-		return sucursalRepository.findAll(sort);
-	}
-	
+
 	@Transactional
 	public void delete(Sucursal s) {
 		sucursalRepository.delete(s);
@@ -61,25 +61,5 @@ public class SucursalServiceImpl implements SucursalService {
 		return sucursalRepository.findAll(page).getContent();
 	}
 
-	@Transactional
-	public void updateSucursal(int s_id,String s_name,String s_location,
-			String s_open,String s_close,int s_tables,String s_manager) throws DataAccessException {
-		sucursalRepository.updateSucursal(s_id, s_name, s_location, s_open, s_close, s_tables, s_manager);
-		// TODO Auto-generated method stub
-	}
-	/*@PersistenceContext(unitName="capas")
-	private EntityManager entityManager;
 	
-	@Transactional
-	public boolean updateSucursal(Sucursal su) throws DataAccessException{
-	try {
-			entityManager.persist(su);
-			return true;
-		}catch(Throwable e) {
-			return false;
-		}
-	}*/
-	
-	
-
 }

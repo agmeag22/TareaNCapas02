@@ -23,7 +23,7 @@ import com.uca.capas.service.UserService;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import org.springframework.data.domain.Sort;
 @Controller //manda a llamar a los metodos
 public class MainController {
 	
@@ -31,21 +31,15 @@ public class MainController {
 	
 
 	
-	@Autowired
-	private EmpleadoRepository empleadoRepo;
 	
 	@Autowired
 	private EmpleadoService empleadoServ;
 	
-	@Autowired
-	private SucursalRepository sucursalRepo;
 	
 	@Autowired
 	private SucursalService sucursalServ;
 	
-	@Autowired
-	private UserRepository userRepo;
-	
+
 	@Autowired
 	private UserService userServ;
 	
@@ -111,7 +105,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		List<Empleado> empleados=null;
 		try {
-			empleados=empleadoServ.findAll();
+			empleados=empleadoServ.findAll( );
 		}catch(Exception e){
 		}
 		mav.addObject("empleados",empleados);
@@ -141,7 +135,7 @@ public class MainController {
 		
 		try {
 			sucursalServ.delete(sucursalServ.findOne(code));
-			sucursales = sucursalServ.findAll();
+			sucursales = sucursalServ.findAll( );
 			message="Se ha borrado con exito";
 		}catch (Exception e){
 			log.info("Error:"+e.toString());	
@@ -172,19 +166,14 @@ public class MainController {
 	@RequestMapping(value="/actualizar")
 	public ModelAndView actualizar(@ModelAttribute(value="sucursal") Sucursal su) {
 		ModelAndView mav = new ModelAndView();
-		
+		Sucursal sucursal=su;
 		List <Sucursal> sucursales=null;
 		String message="";
 		try {
-			
-			sucursalServ.updateSucursal(su.getId_store(),su.getStore_name(),
-					su.getStore_location(),su.getStore_schedule_open(),su.getStore_schedule_close(),
-					su.getStore_tables(),su.getStore_manager());
-					
-			//sucursalServ.save(su);
+				
+			sucursalServ.save(sucursal);
 			message="actualizacion con exito";
-			sucursales=sucursalServ.findAll();
-			
+			sucursales=sucursalServ.findAll( );
 		}catch (Exception e){
 			log.info("Error:"+e.toString());	
 		}
@@ -194,6 +183,62 @@ public class MainController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/eliminaruser")
+	public ModelAndView deleteuser(@ModelAttribute(value="user") User user,@RequestParam(value="id_store")int code) {
+		ModelAndView mav = new ModelAndView();
+		List<User> us=null;
+		List<Empleado> em=null;
+		Sucursal su=null;
+		try {
+			userServ.delete(user);
+			su=sucursalServ.findOne(code);
+			em=empleadoServ.findBySucursal(code);
+			us=userServ.findBySucursal(code);
+		}catch (Exception e){
+			log.info("Error:"+e.toString());	
+		}
+		mav.addObject("store",su);
+		mav.addObject("usuario",us);
+		mav.addObject("empleados",em);
+		mav.setViewName("verperfil");
+		return mav;
+	}
+	@RequestMapping(value="/editaruser")
+	public ModelAndView editaruser(@ModelAttribute(value="user") User user) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("user",user);
+		mav.setViewName("editaruser");
+		return mav;
+	}
+	
+	@RequestMapping(value="/nuevousuario")
+	public ModelAndView addu(@RequestParam(value="id_store") int idstore) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("usuario",idstore);
+		mav.setViewName("nuevouser");
+		return mav;
+	}
+	
+	@RequestMapping(value="/adduser")
+	public ModelAndView adduser(@ModelAttribute(value="user") User user,@RequestParam(value="id_store")int code) {
+		ModelAndView mav = new ModelAndView();
+		List<User> us=null;
+		List<Empleado> em=null;
+		Sucursal su=null;
+		try {
+			userServ.save(user);
+			su=sucursalServ.findOne(code);
+			em=empleadoServ.findBySucursal(code);
+			us=userServ.findBySucursal(code);
+		}catch (Exception e){
+			log.info("Error:"+e.toString());	
+		}
+		mav.addObject("store",su);
+		mav.addObject("usuario",us);
+		mav.addObject("empleados",em);
+		mav.setViewName("verperfil");
+		return mav;
+	}
 	
 	
 }

@@ -35,6 +35,7 @@
 		<div>Horario cierre:</div><input type="text" class="form-control" name="store_schedule_close" placeholder="Ejemplo: 12:00 AM" required>
 		<div>Ubicación:</div><input type="text" class="form-control" name="store_location" required>
 		<div>Numero de mesas :</div><input type="number" class="form-control" name="store_tables" placeholder="Número" required>
+		
 		<div>Nombre Gerente :</div>
 		<div class="input-group mb-3">
 		  <div class="input-group-prepend">
