@@ -126,7 +126,7 @@
       <div class="container3">
       	<form action="${pageContext.request.contextPath}/nuevoempleado?id_store=${store.id_store} " method="post">
       	<input type="hidden" value="${store.id_store}" name="id_store">
-		<input type="submit" class="btn btn-outline-primary btn-sm" value="Nuevo Usuario">
+		<input type="submit" class="btn btn-outline-primary btn-sm" value="Nuevo Empleado">
 	  	<h4>Tabla Empleados</h4>
 	  	<table class="table table-hover">
 		<thead class="thead-dark table-hover">

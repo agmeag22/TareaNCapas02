@@ -36,17 +36,7 @@
 		<div>Ubicación:</div><input type="text" class="form-control" name="store_location" required>
 		<div>Numero de mesas :</div><input type="number" class="form-control" name="store_tables" placeholder="Número" required>
 		
-		<div>Nombre Gerente :</div>
-		<div class="input-group mb-3">
-		  <div class="input-group-prepend">
-		  </div>
-		  
-		  <select class="custom-select" id="inputGroupSelect01" name="store_manager" required>
-		  	<c:forEach items="${empleados}" var="empleados">
-		    <option value="${empleados.e_name}">${empleados.e_name}</option>
-		    </c:forEach>
-		  </select>
-		</div> 
+		<div>Nombre Gerente :</div><input type="text" class="form-control" name="store_manager" placeholder="Nombre Gerente" required>
 		<input type="submit" class="btn btn-outline-dark button" value="Registrar Sucursal">
 		</form>
 	</div>
